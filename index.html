@@ -153,6 +153,34 @@
     header h1{font-size:26px}
   }
   @media print{nav{display:none} section{break-inside:avoid}}
+
+  .opt.c{background:var(--amber-soft);border-color:#F2CF8A}
+  .opt.c .tag{background:#F59E0B;color:#fff}
+  .vmap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .vcol{display:flex;flex-direction:column;align-items:stretch}
+  .vhead{border-radius:10px;padding:10px 14px;font-weight:700;font-size:15px;text-align:center;color:#fff}
+  .vhead.a{background:var(--green)} .vhead.b,.vhead.c{background:#D97706}
+  .vline{width:2px;height:16px;background:#9CA3AF;margin:0 auto}
+  .vq{background:var(--blue-soft);border:1.5px solid #9CC3E6;border-radius:10px;padding:12px 14px;text-align:center}
+  .vq .qlbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}
+  .vq b{display:block;font-size:14px;color:var(--navy);margin-top:3px}
+  .vsplit{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;position:relative}
+  .vsplit::before{content:"";position:absolute;top:-16px;left:25%;right:25%;height:2px;background:#9CA3AF}
+  .vsplit::after{content:"";position:absolute;top:-16px;left:50%;width:2px;height:0}
+  .vyes,.vno{border-radius:10px;padding:12px;border:1.5px solid;position:relative;display:flex;flex-direction:column}
+  .vyes::before,.vno::before{content:"";position:absolute;top:-16px;left:50%;width:2px;height:16px;background:#9CA3AF}
+  .vyes{background:var(--green-soft);border-color:#86C99C}
+  .vno{background:var(--amber-soft);border-color:#F2CF8A}
+  .vyes .lbl,.vno .lbl{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.06em;font-weight:500;margin-bottom:4px}
+  .vyes .lbl{color:var(--green)} .vno .lbl{color:var(--amber)}
+  .vyes b,.vno b{font-size:14px;color:var(--ink)}
+  .vyes small,.vno small{font-size:12.5px;color:#374151;margin-top:3px}
+  .next{margin-top:8px;font-size:12px;color:var(--green);font-weight:600;border-top:1px dashed #86C99C;padding-top:6px}
+  .floor{margin-top:18px;background:#F3F4F6;border:1.5px dashed #9CA3AF;border-radius:10px;padding:14px 16px;font-size:14px;color:#374151}
+  @media (max-width:860px){.vmap{grid-template-columns:1fr}}
+
+  .plan-fit{margin-top:22px;border:1.5px solid #9CC3E6;background:#F5F9FD;border-radius:14px;padding:20px}
+  .plan-fit h3{font-size:16px;color:var(--navy);margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -161,7 +189,7 @@
   <div class="wrap">
     <div class="eyebrow">Solvenza · Taller · Reto de reducción de costos con IA</div>
     <h1>Reto de reducción de costos · Grupo 1</h1>
-    <p class="lead">Atacamos <b>Cobros a nivel nacional</b>: usar mejor la capacidad de los gestores antes de agregar costo.</p>
+    <p class="lead">Tres vías de ahorro en la <b>recuperación de cartera</b>, cada una con su alternativa si no funciona y su continuidad si funciona.</p>
     <div class="chips">
       <span class="chip">Ana Acurio</span><span class="chip">Gracia Erazo</span>
       <span class="chip">Emmanuel Peralta</span><span class="chip">Eduardo Sevilla</span>
@@ -172,12 +200,13 @@
 <nav>
   <div class="wrap">
     <a href="#s1">1 · El reto</a>
-    <a href="#s2">2 · Propuesta</a>
-    <a href="#s3">3 · Cascada</a>
-    <a href="#s4">4 · Escenarios</a>
-    <a href="#s5">5 · Por qué no otras áreas</a>
-    <a href="#s6">6 · Por qué sí Cobros</a>
-    <a href="#s7">7 · Riesgos</a>
+    <a href="#s2">2 · Las 3 vías</a>
+    <a href="#s3">3 · Alternativas y continuidades</a>
+    <a href="#s4">4 · Validación semana 1</a>
+    <a href="#s5">5 · Escenarios</a>
+    <a href="#s6">6 · Por qué no otras áreas</a>
+    <a href="#s7">7 · Por qué sí</a>
+    <a href="#s8">8 · Riesgos</a>
   </div>
 </nav>
 
@@ -196,180 +225,195 @@
 
   <!-- 2 -->
   <section id="s2">
-    <div class="sec-head"><div class="num">2</div><h2>Nuestra propuesta: Cobros, con 3 ideas</h2></div>
-    <p class="sub">Un solo foco, a nivel nacional (domicilio en Tegucigalpa y San Pedro Sula, GIRA en el resto del país), y tres formas de ahorrar.</p>
+    <div class="sec-head"><div class="num">2</div><h2>Las 3 vías</h2></div>
+    <p class="sub">No apostamos todo a una sola. Son tres vías de naturaleza distinta dentro de la recuperación de cartera, y se pueden trabajar en paralelo.</p>
     <div class="cmap">
-      <div class="root">Usar mejor la capacidad de Cobros</div>
+      <div class="root">Reducir pérdidas y costos de recuperar la cartera</div>
       <div class="trunk"></div>
       <div class="branches">
         <div class="branch">
           <div class="opt a">
-            <span class="tag">⭐ PREFERIDA · A</span>
-            <h3>Priorizar mejor en las zonas saturadas</h3>
-            <p>Donde los gestores llegan al tope de 250 y quedan cuentas sin asignar, usar la probabilidad de pago y el saldo para decidir qué cuentas se visitan y cuáles pasan a teléfono, SMS o IVR.</p>
+            <span class="tag">⭐ VÍA 1 · SUGERIDA</span>
+            <h3>Artículos recuperados</h3>
+            <p>Cuando se recupera una moto o un artículo, se vende por menos de lo que se debía. Vender más rápido y mejor reduce esa pérdida.</p>
             <ul>
-              <li><b>Ahorro:</b> pérdida evitada en cuentas que hoy nadie gestiona, y horas mejor usadas</li>
-              <li><b>No toca:</b> a los gestores de zonas alejadas o riesgosas, que con menos cuentas ya tienen una carga justa</li>
-              <li><b>Datos:</b> MotorAsignacionClientes y Gestiones_HPI</li>
+              <li><b>Ahorro:</b> dinero, en la línea "Pérdida en artículos recuperados"</li>
+              <li><b>Foco:</b> la pérdida crece cada año y se concentra en Motomundo</li>
+              <li><b>Dato clave:</b> detalle por unidad (Ronald, Cobros)</li>
             </ul>
-            <a class="more" style="color:var(--green)" href="#prob">Cómo se arma la probabilidad ↓</a>
           </div>
         </div>
         <div class="branch">
           <div class="opt b">
-            <span class="tag">ALTERNATIVA · B</span>
-            <h3>Visitas que valen la pena</h3>
-            <p>Domicilio visita saldos mayores a 15k y GIRA mayores a 10k. Revisamos si la visita recupera más que una llamada. Si no, se ajusta el umbral. Es el complemento de A: A decide cuenta por cuenta y B ajusta la regla general.</p>
+            <span class="tag">VÍA 2</span>
+            <h3>Descuentos bien usados</h3>
+            <p>Revisar si se condona o descuenta a clientes que igual iban a pagar. Ese descuento es dinero perdido.</p>
             <ul>
-              <li><b>Ahorro:</b> visitas que no rinden</li>
-              <li><b>Prueba:</b> cuentas justo arriba vs. justo abajo del umbral</li>
-              <li><b>Solución:</b> ajustar un número en la regla</li>
+              <li><b>Ahorro:</b> dinero, en "Pérdida por condonación de capital"</li>
+              <li><b>Prueba:</b> pago de clientes parecidos con y sin descuento</li>
+              <li><b>Cuidado:</b> quien negocia no se parece a quien no</li>
             </ul>
           </div>
         </div>
         <div class="branch">
           <div class="opt c">
-            <span class="tag">ALTERNATIVA · C</span>
-            <h3>Descuentos bien usados</h3>
-            <p>Revisamos si se condona o descuenta a clientes que igual iban a pagar. Ese descuento es dinero perdido.</p>
+            <span class="tag">VÍA 3</span>
+            <h3>Visitas que valen la pena</h3>
+            <p>Domicilio visita saldos mayores a 15k y GIRA mayores a 10k. Medir si la visita recupera más que una llamada cerca de ese umbral.</p>
             <ul>
-              <li><b>Ahorro:</b> dinero en el estado de resultados</li>
-              <li><b>Prueba:</b> pago de clientes similares con y sin descuento</li>
-              <li><b>Cuidado:</b> quien negocia no se parece a quien no</li>
+              <li><b>Ahorro:</b> costo de visitas que no rinden, dentro de "Reparto para gastos cobros"</li>
+              <li><b>Prueba:</b> cuentas justo arriba vs. justo abajo del umbral</li>
+              <li><b>Herramienta:</b> probabilidad de pago <a class="more" style="margin:0" href="#prob">ver ↓</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="tree-note" style="margin-top:20px"><b>Visitas de verificación de Créditos:</b> además de cobrar, los gestores visitan a posibles clientes para Créditos, que les paga 100 Lps por visita porque conocen bien sus zonas. Es una sinergia que suma a la colocación, así que <b>no se toca</b>. Lo que sí hacemos es <b>contarla dentro de la carga</b> de cada gestor al priorizar, para no saturarlo.</div>
-
-    <div class="prob" id="prob">
-      <h3>¿Cómo se arma la probabilidad de pago? <span class="mini">(para priorizar en la opción A)</span></h3>
-      <p class="prob-lead">Es una calificación para cada cuenta en mora: qué tan probable es que <b>no se deslice</b> al siguiente tramo el próximo mes. Se construye con la historia de la propia cartera.</p>
-      <div class="steps">
-        <div class="step"><span class="sn">1</span><h4>Definir qué es "pagar"</h4><p>Éxito = la cuenta <b>se contiene, hace rollback o se rehabilita</b> en los próximos 30 días. Fracaso = <b>se desliza</b>. Es la misma lógica de la dinámica de cobros.</p></div>
-        <div class="step"><span class="sn">2</span><h4>Escoger las variables</h4><p>Tramo y días de mora, saldo, <b>reincidencia en mora 90+</b>, % de cuotas pagadas a tiempo en los últimos 12 meses, días desde el último pago, sociedad, zona y tipo de cliente.</p></div>
-        <div class="step"><span class="sn">3</span><h4>Calcularla en dos niveles</h4><p><b>Nivel 1 (reto):</b> tabla histórica en KNIME, con el % de cuentas que no se deslizaron por combinación de tramo × reincidencia × pagos recientes.<br><b>Nivel 2 (después):</b> regresión logística con las mismas variables.</p></div>
-        <div class="step"><span class="sn">4</span><h4>Usarla para priorizar</h4><p><b>Alta:</b> SMS, IVR o dejar que pague sola.<br><b>Media:</b> llamada de gestor.<br><b>Baja:</b> los gestores más efectivos o visita, si el saldo lo justifica. En las zonas saturadas, las de probabilidad alta salen de la lista de visitas y dejan espacio a cuentas sin asignar.</p></div>
-        <div class="step"><span class="sn">5</span><h4>Probarla</h4><p>Una parte de las zonas saturadas con la asignación actual y otra con la nueva priorización. <b>KPI:</b> horas por lempira recuperado. <b>Salvaguarda:</b> que el deslizamiento no suba.</p></div>
-      </div>
-      <p class="prob-note">El nivel 1 alcanza para el reto: es simple, se explica en una lámina y se valida con datos históricos.</p>
+    <div class="plan-fit">
+      <h3>Cómo encaja con el Plan Financiero</h3>
+      <table>
+        <thead><tr><th style="width:22%">Vía</th><th style="width:32%">Línea del estado de resultados</th><th>Lectura</th></tr></thead>
+        <tbody>
+          <tr><td><b>1 · Artículos recuperados</b></td><td>Pérdida en artículos recuperados</td><td>Es la mayor de las tres pérdidas, crece cada año y se concentra en Motomundo</td></tr>
+          <tr><td><b>2 · Descuentos</b></td><td>Pérdida por condonación de capital</td><td>Subió con fuerza en 2026; la condonación de intereses es casi nula, así que la vía se enfoca en capital</td></tr>
+          <tr><td><b>3 · Visitas</b></td><td>Reparto para gastos cobros (Solvenza)</td><td>Es todo el costo de Cobros; las visitas son solo una parte. Hay que pedir el detalle</td></tr>
+        </tbody>
+      </table>
+      <p class="prob-note">Las tres vías se miden en líneas que el Plan Financiero ya proyecta, así que el ahorro se puede validar con Finanzas sin crear indicadores nuevos.</p>
     </div>
+
+    <div class="tree-note" style="margin-top:20px"><b>Las vías 1 y 2 se pueden presentar juntas</b> como "pérdidas evitables después de la mora": las dos son dinero en el estado de resultados. <b>La vía 3 no duplica el análisis de cobertura:</b> el reto mide cuánto rinde una visita; la cobertura usa ese dato para calcular cuántos gestores hacen falta.</div>
   </section>
 
   <!-- 3 -->
   <section id="s3">
-    <div class="sec-head"><div class="num">3</div><h2>Cascada: qué hacemos según lo que encontremos</h2></div>
-    <p class="sub">Probamos las opciones en orden. Si una no aplica, bajamos a la siguiente. Cada paso tiene una sola razón para avanzar.</p>
-    <div class="cascade">
-      <div class="crow head"><div>Paso</div><div>Pregunta</div><div>Si la respuesta es SÍ</div><div>Si la respuesta es NO</div></div>
-      <div class="crow">
-        <div class="pstep">1</div>
-        <div class="q2"><span class="qlbl">Revisión de datos</span><b>¿Las tablas muestran cuentas por gestor, zona y visitas?</b><small>MotorAsignacionClientes y Gestiones_HPI</small></div>
-        <div class="out next">→ Paso 2</div>
-        <div class="out next">→ Paso 4<small>Sin esos datos, A y B no se pueden medir</small></div>
+    <div class="sec-head"><div class="num">3</div><h2>Alternativas y continuidades</h2></div>
+    <p class="sub">Cada vía tiene una pregunta que la valida. Si la respuesta es sí, continúa y escala. Si es no, tiene una alternativa de la misma lógica.</p>
+    <div class="vmap">
+      <div class="vcol">
+        <div class="vhead a">Vía 1 · Artículos recuperados</div>
+        <div class="vline"></div>
+        <div class="vq"><span class="qlbl">Pregunta a Cobros</span><b>¿Hay detalle por unidad: fecha de recuperación, de venta, precio y deuda?</b></div>
+        <div class="vsplit">
+          <div class="vyes"><span class="lbl">SÍ · Continuidad</span><b>Regla de prioridad en bodega</b><small>Alertas por días, orden por modelo y canal de venta</small><span class="next">Escala a: precio de reventa estimado por modelo (aquí entra la IA)</span></div>
+          <div class="vno"><span class="lbl">NO · Alternativa</span><b>Casas externas vs. venta de cartera</b><small>Misma etapa (cartera perdida), también dinero. Se compara con los precios de venta de 2025 y 2026</small></div>
+        </div>
       </div>
-      <div class="crow">
-        <div class="pstep">2</div>
-        <div class="q2"><span class="qlbl">Análisis de datos</span><b>¿Hay zonas con gestores topados y cuentas sin asignar?</b><small>A nivel nacional, por zona</small></div>
-        <div class="out go">✅ Hacer A<small>Priorizar en zonas saturadas: pérdida evitada y horas</small></div>
-        <div class="out next">→ Paso 3</div>
+      <div class="vcol">
+        <div class="vhead b">Vía 2 · Descuentos</div>
+        <div class="vline"></div>
+        <div class="vq"><span class="qlbl">Pregunta a Cobros</span><b>¿Hay registro de condonaciones y descuentos por contrato?</b></div>
+        <div class="vsplit">
+          <div class="vyes"><span class="lbl">SÍ · Continuidad</span><b>Regla de descuento</b><small>Descontar solo donde cambia el pago</small><span class="next">Escala a: política de descuentos según probabilidad de pago</span></div>
+          <div class="vno"><span class="lbl">NO · Alternativa</span><b>Promociones sin efecto incremental</b><small>Misma lógica (subsidio que no cambia la decisión), pero en ventas. Depende de Comercial</small></div>
+        </div>
       </div>
-      <div class="crow">
-        <div class="pstep">3</div>
-        <div class="q2"><span class="qlbl">Análisis de datos</span><b>¿Las cuentas justo arriba del umbral de visita recuperan casi lo mismo con una llamada?</b><small>Datos históricos</small></div>
-        <div class="out alt">✅ Hacer B<small>Ajustar el umbral: libera capacidad</small></div>
-        <div class="out next">→ Paso 4</div>
-      </div>
-      <div class="crow">
-        <div class="pstep">4</div>
-        <div class="q2"><span class="qlbl">Pregunta a Cobros</span><b>¿Hay registro de descuentos y condonaciones por cliente?</b><small>Detalle por contrato</small></div>
-        <div class="out alt">✅ Hacer C<small>Ahorro en dinero con los descuentos</small></div>
-        <div class="out stop">⛔ Plan de contingencia<small>Ver sección 4</small></div>
+      <div class="vcol">
+        <div class="vhead c">Vía 3 · Visitas</div>
+        <div class="vline"></div>
+        <div class="vq"><span class="qlbl">Análisis de datos</span><b>¿Cerca del umbral, la llamada recupera casi lo mismo que la visita?</b></div>
+        <div class="vsplit">
+          <div class="vyes"><span class="lbl">SÍ · Continuidad</span><b>Ajustar el umbral</b><small>Menos visitas que no rinden</small><span class="next">Escala a: canal según probabilidad de pago, y el dato pasa al análisis de cobertura</span></div>
+          <div class="vno"><span class="lbl">NO · Alternativa</span><b>Canal barato en teléfono</b><small>La visita sí vale; usamos la probabilidad de pago para pasar llamadas a SMS o IVR</small></div>
+        </div>
       </div>
     </div>
-    <div class="tree-note"><b>A y B se pueden sumar:</b> si se prioriza cuenta por cuenta y además se ajusta el umbral, se cubren más cuentas. <b>La carga no se mide por número de cuentas:</b> se ajusta por distancia y riesgo de la zona, con la tabla de tipo de zona por colonia que hay que pedir a Cobros. <b>Datos que hay que pedir:</b> el costo mensual de un gestor y cuánto saldo queda hoy sin asignar.</div>
+    <div class="floor"><b>🛟 Piso seguro, si ninguna vía ni alternativa se sostiene:</b> automatizar reportes y conciliaciones en KNIME (≥500 h). Depende solo de nosotros. Las brechas de datos pasan a la hoja de ruta 30/60/90.</div>
+
+    <div class="prob" id="prob">
+      <h3>¿Cómo se arma la probabilidad de pago? <span class="mini">(herramienta de la vía 3 y continuidad de la vía 2)</span></h3>
+      <p class="prob-lead">Una calificación para cada cuenta en mora: qué tan probable es que <b>no se deslice</b> al siguiente tramo el próximo mes. Se construye con la historia de la propia cartera.</p>
+      <div class="steps">
+        <div class="step"><span class="sn">1</span><h4>Qué es "pagar"</h4><p>Éxito = la cuenta <b>se contiene, hace rollback o se rehabilita</b> en 30 días. Fracaso = <b>se desliza</b>.</p></div>
+        <div class="step"><span class="sn">2</span><h4>Variables</h4><p>Tramo, saldo, <b>reincidencia en mora 90+</b>, % de cuotas a tiempo en 12 meses, días desde el último pago, sociedad, zona y tipo de cliente.</p></div>
+        <div class="step"><span class="sn">3</span><h4>Cálculo</h4><p><b>Nivel 1 (reto):</b> tabla histórica en KNIME por combinación de variables.<br><b>Nivel 2:</b> regresión logística.</p></div>
+        <div class="step"><span class="sn">4</span><h4>Uso</h4><p><b>Alta:</b> SMS o IVR.<br><b>Media:</b> llamada.<br><b>Baja:</b> gestor más efectivo o visita, si el saldo lo justifica.</p></div>
+        <div class="step"><span class="sn">5</span><h4>Prueba</h4><p>Asignación actual vs. nueva. <b>KPI:</b> costo por lempira recuperado. <b>Salvaguarda:</b> que el deslizamiento no suba.</p></div>
+      </div>
+    </div>
   </section>
 
   <!-- 4 -->
   <section id="s4">
-    <div class="sec-head"><div class="num">4</div><h2>Escenarios</h2></div>
-    <p class="sub">Qué puede salir y qué tan fuerte queda el caso en cada uno. La revisión de datos y las preguntas a Cobros se hacen en la semana 1, así que sabremos el escenario antes del primer control.</p>
+    <div class="sec-head"><div class="num">4</div><h2>Validación en la semana 1</h2></div>
+    <p class="sub">Todas las preguntas se hacen a la vez. Al cierre de la semana 1 sabemos qué vías siguen, antes del primer control del reto.</p>
     <table>
-      <thead><tr><th style="width:16%">Escenario</th><th style="width:34%">Qué pasa</th><th>Resultado para el reto</th></tr></thead>
+      <thead><tr><th style="width:14%">Vía</th><th style="width:40%">Qué preguntamos o medimos</th><th style="width:18%">A quién</th><th>Para qué sirve</th></tr></thead>
       <tbody>
-        <tr><td><b>🟢 Mejor</b></td><td>Priorizar en las zonas saturadas (A) y ajustar umbrales (B) cubre las cuentas sin asignar sin agregar personal</td><td>Pérdida evitada (dinero) + horas mejor usadas. Además, sirve para absorber el crecimiento de 2027</td></tr>
-        <tr><td><b>🟢 Bueno</b></td><td>La priorización cubre parte de las cuentas sin asignar, pero en algunas zonas no alcanza</td><td>Pérdida evitada parcial + un mapa de dónde sí hace falta más capacidad</td></tr>
-        <tr><td><b>🟡 Intermedio</b></td><td>Se usan mejor las horas, pero las cuentas sin asignar siguen</td><td>Ahorro en horas (≥500 h)</td></tr>
-                <tr><td><b>🟠 Respaldo</b></td><td>No hay zonas saturadas ni el umbral muestra ahorro</td><td>Se pasa a C (descuentos): ahorro en dinero</td></tr>
-        <tr><td><b>🔴 Peor</b></td><td>Los datos de asignación y gestiones no sirven, y no hay registro de descuentos</td><td>Plan de contingencia</td></tr>
+        <tr><td><b>Vía 1</b></td><td>¿Existe el detalle por unidad recuperada? ¿Quién maneja bodega y reventa?</td><td>Ronald (Cobros)</td><td>Línea base y dueño del proceso</td></tr>
+        <tr><td><b>Vía 2</b></td><td>¿Hay registro de condonaciones por contrato? ¿Se dan por regla o caso por caso?</td><td>Cobros</td><td>Saber si se puede comparar con y sin descuento</td></tr>
+        <tr><td><b>Vía 3</b></td><td>Recuperación de cuentas justo arriba y abajo de 15k y 10k, por zona. ¿Qué saldo usa el motor? ¿Cambió el umbral?</td><td>Datos históricos (MotorAsignacionClientes, Gestiones_HPI)</td><td>Saber si la visita rinde más que la llamada</td></tr>
+        <tr><td><b>Todas</b></td><td>Costo por visita y costo mensual de un gestor</td><td>Finanzas o Cobros</td><td>Traducir el resultado a dinero</td></tr>
       </tbody>
     </table>
-
-    <div class="worst">
-      <h3>🔴 Si sale el peor escenario: plan de contingencia</h3>
-      <p class="prob-lead">El peor escenario no prueba que Cobros no tenga desperdicio. Prueba que <b>faltan datos</b>. Por eso no se abandona de inmediato: se baja un nivel.</p>
-      <div class="wsteps">
-        <div class="wstep"><span class="wn">1</span><h4>Partir del ejercicio de Wilmer</h4><p>Pedir su análisis de clientes por zona, gestores actuales y faltantes. Es una base ya hecha para ubicar las zonas saturadas.</p></div>
-        <div class="wstep"><span class="wn">2</span><h4>Estimar con la cartera</h4><p>Con <b>vw_rollbackContratos</b> (saldo contagiado y nivel de mora por contrato) estimar la cartera asignable por zona y compararla con los gestores de cada una.</p></div>
-        <div class="wstep"><span class="wn">3</span><h4>Si tampoco alcanza</h4><p>Pasamos al plan fuera del área: <b>automatizar reportes y conciliaciones</b> en KNIME. Depende solo de nosotros y llega a ≥500 h.</p></div>
-        <div class="wstep"><span class="wn">4</span><h4>Convertir la brecha en hallazgo</h4><p>La falta de datos de asignación, gestiones y descuentos se lleva a la hoja de ruta 30/60/90 como requisito para volver a Cobros.</p></div>
-      </div>
-      <p class="prob-note"><b>Cómo presentarlo:</b> "Previmos este escenario desde el inicio y lo detectamos en la semana 1." Eso suma en factibilidad y riesgo.</p>
-    </div>
-
-    <div class="tree-note"><b>Riesgo aparte, incluso en el mejor escenario:</b> que al reasignar cuentas o ajustar umbrales suba el deslizamiento. La salvaguarda (recuperación, rollback y rehabilitación) se mide desde el primer día.</div>
   </section>
 
   <!-- 5 -->
   <section id="s5">
-    <div class="sec-head"><div class="num">5</div><h2>Por qué Cobros y no otras áreas</h2></div>
-    <p class="sub">Pasamos cada área por tres preguntas: ¿hay ahorro?, ¿tenemos el conocimiento y los datos?, ¿se prueba a tiempo? Solo una sale toda en verde.</p>
+    <div class="sec-head"><div class="num">5</div><h2>Escenarios</h2></div>
+    <p class="sub">Como hay varias vías, los escenarios se cuentan por cuántas se sostienen, no por una sola.</p>
+    <table>
+      <thead><tr><th style="width:16%">Escenario</th><th style="width:36%">Qué pasa</th><th>Resultado para el reto</th></tr></thead>
+      <tbody>
+        <tr><td><b>🟢 Mejor</b></td><td>Se sostienen 2 o 3 vías</td><td>Paquete combinado: dinero (vías 1 y 2) + menor costo de cobro (vía 3). Caso muy fuerte</td></tr>
+        <tr><td><b>🟢 Bueno</b></td><td>Se sostiene una vía de dinero (1 o 2)</td><td>Caso principal en dinero; las demás entran a la hoja de ruta 30/60/90</td></tr>
+        <tr><td><b>🟡 Intermedio</b></td><td>Solo se sostiene la vía 3</td><td>Ahorro en costo de visitas o en horas, más un dato útil para el análisis de cobertura</td></tr>
+        <tr><td><b>🟠 Respaldo</b></td><td>Ninguna vía principal, pero sí una alternativa (casas externas, promociones o canal barato)</td><td>Se presenta la alternativa con la misma lógica de la vía original</td></tr>
+        <tr><td><b>🔴 Peor</b></td><td>Nada se sostiene por falta de datos</td><td>Piso seguro: automatizar reportes (≥500 h) + brechas de datos como hallazgo</td></tr>
+      </tbody>
+    </table>
+    <div class="tree-note"><b>Cómo presentarlo:</b> "Llevamos tres vías y sus alternativas porque no sabíamos cuál tendría datos. En la semana 1 descartamos las débiles y nos quedamos con las que sí se sostienen." Eso es justo lo que pide el reto: matar temprano las hipótesis débiles.</div>
+  </section>
+
+  <!-- 6 -->
+  <section id="s6">
+    <div class="sec-head"><div class="num">6</div><h2>Por qué la recuperación de cartera y no otras áreas</h2></div>
+    <p class="sub">Pasamos cada área por tres preguntas: ¿hay ahorro?, ¿tenemos el conocimiento y los datos?, ¿se prueba a tiempo?</p>
     <div class="legend"><span>✅ Sí</span><span>⚠️ En parte</span><span>❌ No</span></div>
     <table>
-      <thead><tr><th>Área</th><th>¿Hay ahorro?</th><th>¿Tenemos el conocimiento y los datos?</th><th>¿Se prueba en 6 semanas?</th><th>Por qué no</th></tr></thead>
+      <thead><tr><th>Área</th><th>¿Hay ahorro?</th><th>¿Tenemos el conocimiento y los datos?</th><th>¿Se prueba en 6 semanas?</th><th>Lectura</th></tr></thead>
       <tbody>
         <tr><td>Marketing (campañas)</td><td class="c">⚠️</td><td class="c">✅</td><td class="c">✅</td><td>TI ya filtra los datos: el ahorro fácil ya se capturó</td></tr>
         <tr><td>Proveedores (pagos duplicados)</td><td class="c">⚠️</td><td class="c">❌</td><td class="c">✅</td><td>SAP puede ya bloquear duplicados; depende de Contabilidad</td></tr>
         <tr><td>Riesgo (fraude)</td><td class="c">✅</td><td class="c">⚠️</td><td class="c">❌</td><td>Se ve meses después: no se mide a tiempo</td></tr>
         <tr><td>Originación de crédito</td><td class="c">⚠️</td><td class="c">❌</td><td class="c">⚠️</td><td>Cambia la aprobación y hay riesgo para el cliente</td></tr>
         <tr><td>Contact Center de servicio</td><td class="c">⚠️</td><td class="c">❌</td><td class="c">⚠️</td><td>Necesita desarrollo de Tecnología</td></tr>
-        <tr><td>Comisiones de venta</td><td class="c">✅</td><td class="c">❌</td><td class="c">✅</td><td>Tema sensible: la decisión es de Comercial</td></tr>
-        <tr><td>BI y reportes</td><td class="c">❌</td><td class="c">✅</td><td class="c">✅</td><td>Ahorra horas, no dinero</td></tr>
+        <tr><td>Comisiones de venta</td><td class="c">✅</td><td class="c">❌</td><td class="c">✅</td><td>Muy medible, pero la decisión es de Comercial</td></tr>
+        <tr><td>Promociones</td><td class="c">✅</td><td class="c">⚠️</td><td class="c">⚠️</td><td>Queda como alternativa de la vía 2</td></tr>
+        <tr><td>BI y reportes</td><td class="c">❌</td><td class="c">✅</td><td class="c">✅</td><td>Queda como piso seguro</td></tr>
         <tr><td>Tesorería (fondeo)</td><td class="c">✅</td><td class="c">❌</td><td class="c">❌</td><td>Fuera del alcance del grupo</td></tr>
-        <tr class="win"><td>Cobros</td><td class="c">✅</td><td class="c">✅</td><td class="c">✅</td><td>La única con las tres en verde</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- 6 -->
-  <section id="s6">
-    <div class="sec-head"><div class="num">6</div><h2>Por qué sí Cobros</h2></div>
-    <p class="sub">Seis razones para defender la elección.</p>
-    <table>
-      <thead><tr><th style="width:32%">Razón</th><th>Qué significa</th></tr></thead>
-      <tbody>
-        <tr><td><span class="rnum">1</span><b>El problema ya lo reconoce Cobros</b></td><td>Zonas con gestores topados y cuentas sin asignar: no hay que convencer a nadie de que existe</td></tr>
-        <tr><td><span class="rnum">2</span><b>Conocemos el proceso</b></td><td>Motor de asignación, canales (teléfono, domicilio, GIRA), umbrales de 15k y 10k, escalera de comisiones y RMT documentados</td></tr>
-        <tr><td><span class="rnum">3</span><b>Los datos existen</b></td><td>MotorAsignacionClientes, Gestiones_HPI y vw_rollbackContratos, más tramos, rollback y reincidencia 90+ en KNIME</td></tr>
-        <tr><td><span class="rnum">4</span><b>Se prueba con datos históricos</b></td><td>Las cuentas sin asignar y el efecto de la visita se miden con lo que ya pasó: evidencia antes de la semana 5</td></tr>
-        <tr><td><span class="rnum">5</span><b>Salvaguardas claras</b></td><td>Recuperación, rollback y rehabilitación ya se miden</td></tr>
-        <tr><td><span class="rnum">6</span><b>Escala</b></td><td>La misma priorización sirve para planear la cobertura nacional de 2027: hoja de ruta 30/60/90</td></tr>
+        <tr class="win"><td>Recuperación de cartera</td><td class="c">✅</td><td class="c">✅</td><td class="c">✅</td><td>La única con las tres en verde</td></tr>
       </tbody>
     </table>
   </section>
 
   <!-- 7 -->
   <section id="s7">
-    <div class="sec-head"><div class="num">7</div><h2>Riesgos y cómo los manejamos</h2></div>
+    <div class="sec-head"><div class="num">7</div><h2>Por qué sí la recuperación de cartera</h2></div>
+    <p class="sub">Seis razones para defender la elección.</p>
+    <table>
+      <thead><tr><th style="width:32%">Razón</th><th>Qué significa</th></tr></thead>
+      <tbody>
+        <tr><td><span class="rnum">1</span><b>Las pérdidas son visibles</b></td><td>Artículos recuperados y condonaciones son líneas propias del estado de resultados: fáciles de validar con Finanzas</td></tr>
+        <tr><td><span class="rnum">2</span><b>Conocemos el proceso</b></td><td>Dinámica de cobros documentada y las mismas líneas ya proyectadas en el Plan Financiero</td></tr>
+        <tr><td><span class="rnum">3</span><b>Los datos existen o se pueden pedir</b></td><td>Tablas de asignación y gestiones, cartera en KNIME y unidades recuperadas de Cobros</td></tr>
+        <tr><td><span class="rnum">4</span><b>Se prueba con datos históricos</b></td><td>Pérdida por unidad, efecto del descuento y efecto de la visita se miden con lo que ya pasó</td></tr>
+        <tr><td><span class="rnum">5</span><b>Varias vías, menos riesgo</b></td><td>Si una vía no tiene datos, quedan las otras y sus alternativas</td></tr>
+        <tr><td><span class="rnum">6</span><b>Escala</b></td><td>Cada vía tiene su continuidad: precio de reventa, política de descuentos y canal por probabilidad de pago</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 8 -->
+  <section id="s8">
+    <div class="sec-head"><div class="num">8</div><h2>Riesgos y cómo los manejamos</h2></div>
     <p class="sub">Los decimos antes de que nos los pregunten.</p>
     <table>
       <thead><tr><th style="width:44%">Riesgo</th><th>Cómo lo manejamos</th></tr></thead>
       <tbody>
-        <tr><td>El crecimiento de 2027 puede pedir más capacidad aunque se priorice mejor</td><td>El mensaje no es "no contratar", sino "priorizar primero y crecer donde los datos lo justifiquen"</td></tr>
-        <tr><td>Dependemos de datos y apoyo de Cobros (asignación, gestiones, descuentos)</td><td>Pedir un patrocinador de Cobros desde el inicio; si no hay datos, el plan de contingencia dice cuándo detener</td></tr>
-        <tr><td>Se cruza con el análisis de cobertura que está en curso</td><td>Alinearlo con la jefatura desde el inicio para que sumen y no se dupliquen</td></tr>
+        <tr><td>Hoy solo hay unidades y pérdida por mes y empresa; falta el detalle por unidad</td><td>Pedirlo a Ronald en la semana 1; si no existe, la vía 1 pasa a su alternativa</td></tr>
+        <tr><td>Dependemos de datos y apoyo de Cobros</td><td>Pedir un patrocinador de Cobros desde el inicio</td></tr>
+        <tr><td>Se cruza con el análisis de cobertura en curso</td><td>Separarlo claramente: el reto mide el rendimiento de la visita y la cobertura lo usa. Alinearlo con la jefatura</td></tr>
       </tbody>
     </table>
   </section>
@@ -377,8 +421,8 @@
   <!-- Cierre -->
   <section class="closing">
     <h2>En una frase</h2>
-    <p>Atacamos Cobros a nivel nacional: primero priorizamos mejor en las zonas saturadas, después ajustamos las visitas y revisamos los descuentos. Si algo no aplica, lo detectamos en la semana 1. La decisión final es de Cobros y del comité.</p>
-    <div class="speech">"Revisamos todas las áreas con tres preguntas: si hay ahorro, si tenemos el conocimiento y los datos, y si se puede probar en seis semanas. Cobros es la única que pasa las tres. Hoy hay zonas donde los gestores están topados y quedan cuentas sin gestionar. Nuestra propuesta es priorizar mejor qué se visita y qué va por teléfono, sin tocar las zonas alejadas, y medirlo con datos que ya existen."</div>
+    <p>Atacamos la recuperación de cartera con tres vías y sus alternativas: vender mejor lo recuperado, descontar solo donde sirve y visitar solo donde rinde. En la semana 1 nos quedamos con las que tengan datos. La decisión final es del comité.</p>
+    <div class="speech">"No quisimos apostar todo a una sola idea. Revisamos todas las áreas y la recuperación de cartera es la única donde hay ahorro, tenemos el conocimiento y se puede probar en seis semanas. Llevamos tres vías: los artículos recuperados, los descuentos y las visitas. Cada una tiene una alternativa si no hay datos y una continuidad si funciona. Y si nada se sostiene, tenemos un piso seguro con la automatización de reportes."</div>
   </section>
 
 </main>
