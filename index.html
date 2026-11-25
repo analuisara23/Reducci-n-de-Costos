@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reto de reducción de costos · Grupo 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2A4A; --blue:#2E75B6; --blue-soft:#E8F1FA; --gray:#4B5563; --line:#E5E7EB;
+    --bg:#F5F7FA; --white:#FFFFFF; --green:#15803D; --green-soft:#E7F6EC;
+    --amber:#B45309; --amber-soft:#FEF6E4; --red:#B91C1C; --red-soft:#FDECEC; --ink:#1F2937;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  .mono{font-family:'DM Mono',monospace}
+
+  /* Header */
+  header{background:linear-gradient(135deg,#0B1F38 0%,var(--navy) 45%,var(--blue) 100%);color:#fff;padding:44px 24px 36px}
+  .wrap{max-width:1160px;margin:0 auto}
+  .eyebrow{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+  header h1{font-size:34px;font-weight:800;margin:8px 0 10px;letter-spacing:-.01em}
+  header p.lead{font-size:18px;max-width:760px;opacity:.95}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 12px;font-size:13px}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:4px;overflow-x:auto;padding:0 12px}
+  nav a{white-space:nowrap;text-decoration:none;color:var(--gray);font-size:13.5px;font-weight:500;padding:14px 12px;border-bottom:2px solid transparent}
+  nav a:hover{color:var(--blue);border-bottom-color:var(--blue)}
+
+  main{padding:32px 24px 60px}
+  section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;margin-bottom:24px;scroll-margin-top:64px}
+  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .num{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none}
+  h2{font-size:22px;font-weight:700;color:var(--navy)}
+  .sub{color:var(--gray);font-size:14.5px;margin:0 0 20px 44px}
+
+  /* Cards */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff}
+  .card h3{font-size:15.5px;font-weight:700;margin-bottom:6px;color:var(--navy)}
+  .card p{font-size:14px;color:var(--gray)}
+  .big{font-family:'DM Mono',monospace;font-size:13.5px;color:var(--blue);font-weight:500}
+
+  /* Concept map */
+  .cmap{display:flex;flex-direction:column;align-items:center}
+  .root{background:var(--navy);color:#fff;border-radius:999px;padding:14px 34px;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(15,42,74,.18)}
+  .trunk{width:2px;height:26px;background:#9CA3AF}
+  .branches{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;padding-top:26px}
+  .branches::before{content:"";position:absolute;top:0;left:16.66%;right:16.66%;height:2px;background:#9CA3AF}
+  .branch{position:relative}
+  .branch::before{content:"";position:absolute;top:-26px;left:50%;width:2px;height:26px;background:#9CA3AF}
+  .opt{border-radius:12px;padding:18px;height:100%;border:1.5px solid}
+  .opt.a{background:var(--green-soft);border-color:#86C99C}
+  .opt.b,.opt.c{background:var(--amber-soft);border-color:#F2CF8A}
+  .tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11.5px;font-weight:500;padding:2px 9px;border-radius:999px;margin-bottom:8px}
+  .opt.a .tag{background:var(--green);color:#fff}
+  .opt.b .tag,.opt.c .tag{background:#F59E0B;color:#fff}
+  .opt h3{font-size:16.5px;margin-bottom:6px;color:var(--ink)}
+  .opt p{font-size:14px;color:#374151}
+  .opt ul{margin:10px 0 0 18px;font-size:13.5px;color:#374151}
+  .opt li{margin:3px 0}
+
+  /* Decision tree */
+  .tree{display:flex;flex-direction:column;align-items:center}
+  .q{background:var(--blue-soft);border:1.5px solid #9CC3E6;border-radius:12px;padding:14px 18px;text-align:center;max-width:420px}
+  .q .qlbl{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}
+  .q b{display:block;font-size:15px;color:var(--navy);margin:3px 0}
+  .q small{color:var(--gray);font-size:12.5px}
+  .level{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;padding-top:44px}
+  .level::before{content:"";position:absolute;top:0;left:25%;right:25%;height:2px;background:#9CA3AF}
+  .level>div{position:relative;display:flex;flex-direction:column;align-items:center}
+  .level>div::before{content:"";position:absolute;top:-44px;left:50%;width:2px;height:44px;background:#9CA3AF}
+  .stem{width:2px;height:22px;background:#9CA3AF}
+  .yes,.no{position:absolute;top:-33px;font-family:'DM Mono',monospace;font-size:11.5px;font-weight:500;padding:2px 9px;border-radius:999px;background:#fff;border:1px solid var(--line);z-index:1}
+  .yes{color:var(--green);border-color:#86C99C}
+  .no{color:var(--red);border-color:#F3A9A9}
+  .level>div>.yes,.level>div>.no{left:50%;transform:translateX(-50%)}
+  .res{border-radius:12px;padding:14px 16px;text-align:center;width:100%;max-width:260px;border:1.5px solid}
+  .res b{display:block;font-size:15px;margin-bottom:3px}
+  .res span{font-size:13px;color:#374151}
+  .res.go{background:var(--green-soft);border-color:#86C99C}
+  .res.go b{color:var(--green)}
+  .res.alt{background:var(--amber-soft);border-color:#F2CF8A}
+  .res.alt b{color:var(--amber)}
+  .res.neutral{background:#F9FAFB;border-color:var(--line)}
+  .res.neutral b{color:var(--gray)}
+  .tree-note{margin-top:20px;background:#F9FAFB;border-left:4px solid var(--blue);padding:12px 16px;border-radius:6px;font-size:14px;color:#374151}
+
+  /* Tables */
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{background:var(--blue);color:#fff;text-align:left;font-weight:600;padding:11px 12px;font-size:13.5px}
+  th:first-child{border-top-left-radius:8px} th:last-child{border-top-right-radius:8px}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#FAFBFC}
+  td.c{text-align:center;font-size:16px}
+  tr.win td{background:var(--green-soft)!important;font-weight:600;border-bottom:none}
+  tr.win td:first-child{border-left:4px solid var(--green)}
+  .legend{display:flex;gap:18px;font-size:13px;color:var(--gray);margin:0 0 12px 44px}
+  .rnum{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:12.5px;align-items:center;justify-content:center;margin-right:8px}
+
+  /* Closing */
+  .closing{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;border:none}
+  .closing h2{color:#fff}
+  .closing p{font-size:18px;margin-top:8px;max-width:900px}
+  .closing .speech{margin-top:16px;background:rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;font-size:15px;font-style:italic;line-height:1.65}
+
+
+  .more{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:var(--amber);text-decoration:none}
+  .prob{margin-top:26px;border:1.5px dashed #F2CF8A;border-radius:14px;padding:22px;background:#FFFCF5;scroll-margin-top:64px}
+  .prob h3{font-size:17px;color:var(--navy)} .prob .mini{font-weight:500;color:var(--amber);font-size:14px}
+  .prob-lead{font-size:14.5px;color:#374151;margin:6px 0 16px}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;position:relative}
+  .sn{display:inline-flex;width:26px;height:26px;border-radius:50%;background:#F59E0B;color:#fff;font-weight:700;font-size:13px;align-items:center;justify-content:center;margin-bottom:6px}
+  .step h4{font-size:14px;color:var(--navy);margin-bottom:4px}
+  .step p{font-size:13px;color:#374151}
+  .prob-note{margin-top:14px;font-size:13.5px;color:var(--gray)}
+  .cascade{display:flex;flex-direction:column;gap:10px}
+  .crow{display:grid;grid-template-columns:60px 1.6fr 1fr 1fr;gap:12px;align-items:stretch}
+  .crow.head{font-family:'DM Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--gray)}
+  .pstep{display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--blue);background:var(--blue-soft);border-radius:12px}
+  .q2{background:var(--blue-soft);border:1.5px solid #9CC3E6;border-radius:12px;padding:12px 16px}
+  .q2 .qlbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}
+  .q2 b{display:block;font-size:14.5px;color:var(--navy);margin:2px 0}
+  .q2 small{color:var(--gray);font-size:12.5px}
+  .out{border-radius:12px;padding:12px 14px;font-weight:700;font-size:15px;display:flex;flex-direction:column;justify-content:center;border:1.5px solid}
+  .out small{font-weight:400;font-size:12.5px;color:#374151;margin-top:2px}
+  .out.go{background:var(--green-soft);border-color:#86C99C;color:var(--green)}
+  .out.alt{background:var(--amber-soft);border-color:#F2CF8A;color:var(--amber)}
+  .out.next{background:#F9FAFB;border-color:var(--line);color:var(--gray)}
+  .out.stop{background:var(--red-soft);border-color:#F3A9A9;color:var(--red)}
+  @media (max-width:860px){.steps{grid-template-columns:1fr}.crow{grid-template-columns:1fr}.crow.head{display:none}}
+
+  .worst{margin-top:22px;border:1.5px solid #F3A9A9;background:#FFF8F8;border-radius:14px;padding:22px}
+  .worst h3{font-size:17px;color:var(--red)}
+  .wsteps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .wstep{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
+  .wn{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:13px;align-items:center;justify-content:center;margin-bottom:6px}
+  .wstep h4{font-size:14px;color:var(--navy);margin-bottom:4px}
+  .wstep p{font-size:13px;color:#374151}
+  @media (max-width:860px){.wsteps{grid-template-columns:1fr}}
+  footer{text-align:center;font-size:12px;color:#9CA3AF;padding-bottom:30px}
+
+  @media (max-width:860px){
+    .grid3,.branches{grid-template-columns:1fr}
+    .branches::before,.branch::before{display:none}
+    .level{grid-template-columns:1fr;gap:40px}
+    .level::before{display:none}
+    header h1{font-size:26px}
+  }
+  @media print{nav{display:none} section{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Solvenza · Taller · Reto de reducción de costos con IA</div>
+    <h1>Reto de reducción de costos · Grupo 1</h1>
+    <p class="lead">Atacamos <b>Cobros</b>: lo conocemos, tenemos los datos y se puede probar rápido.</p>
+    <div class="chips">
+      <span class="chip">Ana Acurio</span><span class="chip">Gracia Erazo</span>
+      <span class="chip">Emmanuel Peralta</span><span class="chip">Eduardo Sevilla</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#s1">1 · El reto</a>
+    <a href="#s2">2 · Propuesta</a>
+    <a href="#s3">3 · Según Cobros</a>
+    <a href="#s4">4 · Escenarios</a>
+    <a href="#s5">5 · Por qué no otras áreas</a>
+    <a href="#s6">6 · Por qué sí Cobros</a>
+    <a href="#s7">7 · Riesgos</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- 1 -->
+  <section id="s1">
+    <div class="sec-head"><div class="num">1</div><h2>Qué pide el reto</h2></div>
+    <p class="sub">Las reglas que usamos para escoger dónde atacar.</p>
+    <div class="grid3">
+      <div class="card"><h3>Basta cumplir 1 meta</h3><p class="big">≥10% del gasto · ≥500 h/año · ≥US$10K</p></div>
+      <div class="card"><h3>La mitad del puntaje</h3><p>Ahorro económico <b>(30%)</b> + que se pueda hacer <b>(20%)</b>.</p></div>
+      <div class="card"><h3>Gana lo simple</h3><p>Un ahorro probado vale más que una solución de IA sofisticada.</p></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="s2">
+    <div class="sec-head"><div class="num">2</div><h2>Nuestra propuesta: Cobros, con 3 ideas</h2></div>
+    <p class="sub">Un solo foco y tres formas de ahorrar dentro de él.</p>
+    <div class="cmap">
+      <div class="root">Atacar el gasto de Cobros</div>
+      <div class="trunk"></div>
+      <div class="branches">
+        <div class="branch">
+          <div class="opt a">
+            <span class="tag">⭐ PREFERIDA · A</span>
+            <h3>Visitas que valen la pena</h3>
+            <p>Hoy se visita a saldos mayores a 15k en ciudad y a 10k en zona rural. Revisamos si la visita recupera más que una llamada.</p>
+            <ul>
+              <li><b>Ahorro:</b> visitas que no rinden</li>
+              <li><b>Prueba:</b> cuentas justo arriba vs. justo abajo del umbral</li>
+              <li><b>Solución:</b> ajustar un número en la regla</li>
+            </ul>
+          </div>
+        </div>
+        <div class="branch">
+          <div class="opt b">
+            <span class="tag">ALTERNATIVA · B</span>
+            <h3>Descuentos bien usados</h3>
+            <p>Revisamos si se condona o descuenta a clientes que igual iban a pagar.</p>
+            <ul>
+              <li><b>Ahorro:</b> dinero en el estado de resultados</li>
+              <li><b>Prueba:</b> pago de clientes similares con y sin descuento</li>
+              <li><b>Cuidado:</b> quien negocia no se parece a quien no</li>
+            </ul>
+          </div>
+        </div>
+        <div class="branch">
+          <div class="opt c">
+            <span class="tag">ALTERNATIVA · C</span>
+            <h3>Repartir mejor las cuentas</h3>
+            <p>Asignar según la probabilidad de pago del cliente, no en partes iguales entre gestores.</p>
+            <ul>
+              <li><b>Ahorro:</b> ≥500 horas de gestores</li>
+              <li><b>Insumo:</b> regla de reincidencia 90+ en KNIME</li>
+              <li><b>Valor:</b> la de mayor escalabilidad</li>
+            </ul>
+            <a class="more" href="#prob">Cómo se arma la probabilidad ↓</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prob" id="prob">
+      <h3>¿Cómo se arma la probabilidad de pago? <span class="mini">(opción C)</span></h3>
+      <p class="prob-lead">Es una calificación para cada cuenta en mora: qué tan probable es que <b>no se deslice</b> al siguiente tramo el próximo mes. Se construye con la historia de la propia cartera.</p>
+      <div class="steps">
+        <div class="step"><span class="sn">1</span><h4>Definir qué es "pagar"</h4><p>Éxito = la cuenta <b>se contiene, hace rollback o se rehabilita</b> en los próximos 30 días. Fracaso = <b>se desliza</b>. Es la misma lógica de la dinámica de cobros.</p></div>
+        <div class="step"><span class="sn">2</span><h4>Escoger las variables</h4><p>Tramo y días de mora, saldo, <b>reincidencia en mora 90+</b>, % de cuotas pagadas a tiempo en los últimos 12 meses, días desde el último pago, sociedad, zona y tipo de cliente.</p></div>
+        <div class="step"><span class="sn">3</span><h4>Calcularla en dos niveles</h4><p><b>Nivel 1 (reto):</b> tabla histórica en KNIME, con el % de cuentas que no se deslizaron por combinación de tramo × reincidencia × pagos recientes.<br><b>Nivel 2 (después):</b> regresión logística con las mismas variables.</p></div>
+        <div class="step"><span class="sn">4</span><h4>Usarla para asignar</h4><p><b>Alta:</b> SMS, IVR o dejar que pague sola.<br><b>Media:</b> llamada de gestor.<br><b>Baja:</b> los gestores más efectivos (más rollback) o visita, si el saldo lo justifica.</p></div>
+        <div class="step"><span class="sn">5</span><h4>Probarla</h4><p>Una parte de la cartera con el reparto actual y otra con el nuevo. <b>KPI:</b> horas por lempira recuperado. <b>Salvaguarda:</b> que el deslizamiento no suba.</p></div>
+      </div>
+      <p class="prob-note">El nivel 1 alcanza para el reto: es simple, se explica en una lámina y se valida con datos históricos. Las variables de promesas de pago y contactabilidad se agregan si Cobros comparte el registro de gestiones.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="s3">
+    <div class="sec-head"><div class="num">3</div><h2>Qué hacemos según lo que responda Cobros</h2></div>
+    <p class="sub">Una cascada: probamos primero la opción que ahorra dinero y, si no aplica, bajamos a la siguiente. Cada paso tiene una sola razón para avanzar.</p>
+    <div class="cascade">
+      <div class="crow head"><div>Paso</div><div>Pregunta</div><div>Si la respuesta es SÍ</div><div>Si la respuesta es NO</div></div>
+      <div class="crow">
+        <div class="pstep">1</div>
+        <div class="q2"><span class="qlbl">Pregunta a Cobros</span><b>¿La visita tiene costo variable?</b><small>Pago por visita, viáticos o transporte</small></div>
+        <div class="out next">→ Paso 2</div>
+        <div class="out next">→ Paso 3<small>A no ahorraría dinero</small></div>
+      </div>
+      <div class="crow">
+        <div class="pstep">2</div>
+        <div class="q2"><span class="qlbl">Análisis de datos</span><b>¿Las cuentas justo arriba del umbral recuperan casi lo mismo con una llamada?</b><small>Datos históricos</small></div>
+        <div class="out go">✅ Hacer A<small>Ajustar el umbral: ahorro en dinero</small></div>
+        <div class="out next">→ Paso 3<small>La visita sí vale: se mantiene</small></div>
+      </div>
+      <div class="crow">
+        <div class="pstep">3</div>
+        <div class="q2"><span class="qlbl">Pregunta a Cobros</span><b>¿Hay registro de descuentos y condonaciones por cliente?</b><small>Detalle por contrato</small></div>
+        <div class="out alt">✅ Hacer B<small>Ahorro en dinero con los descuentos</small></div>
+        <div class="out next">→ Paso 4</div>
+      </div>
+      <div class="crow">
+        <div class="pstep">4</div>
+        <div class="q2"><span class="qlbl">Pregunta a Cobros</span><b>¿Nos comparten el registro de gestiones y aceptan un grupo de control?</b><small>Necesario para la opción C</small></div>
+        <div class="out alt">✅ Hacer C<small>Ahorro en horas: meta ≥500 h</small></div>
+        <div class="out stop">⛔ Plan de contingencia<small>Ver sección 4: primero A en horas con datos propios; si no, automatizar reportes</small></div>
+      </div>
+    </div>
+    <div class="tree-note"><b>Pregunta extra para Cobros:</b> ¿los umbrales de 15k y 10k se evaluaron alguna vez? Si ya se calibraron con datos, la opción A pierde fuerza y conviene empezar por el paso 3.</div>
+  </section>
+
+  <!-- 4 -->
+  <section id="s4">
+    <div class="sec-head"><div class="num">4</div><h2>Escenarios de la cascada</h2></div>
+    <p class="sub">Qué puede salir y qué tan fuerte queda el caso en cada uno. Las preguntas a Cobros se hacen juntas en la semana 1, así que sabremos el escenario antes del primer control.</p>
+    <table>
+      <thead><tr><th style="width:16%">Escenario</th><th style="width:28%">Camino</th><th style="width:16%">Tipo de ahorro</th><th>Fuerza del caso</th></tr></thead>
+      <tbody>
+        <tr><td><b>🟢 Mejor</b></td><td>Pasos 1 y 2: sí → <b>A</b> (+ B como fase 2)</td><td>Dinero</td><td>Muy alta: ahorro en dinero, solución mínima y evidencia histórica antes de la semana 5</td></tr>
+        <tr><td><b>🟡 Intermedio</b></td><td>Paso 3: sí → <b>B</b></td><td>Dinero</td><td>Alta, pero hay que comparar clientes parecidos con cuidado</td></tr>
+        <tr><td><b>🟠 Respaldo</b></td><td>Paso 4: sí → <b>C</b></td><td>Horas</td><td>Media: depende del piloto con grupo de control</td></tr>
+        <tr><td><b>🔴 Peor</b></td><td>Pasos 1, 3 y 4: no</td><td>Horas</td><td>Baja en economía; se rescata con el plan de contingencia</td></tr>
+      </tbody>
+    </table>
+
+    <div class="worst">
+      <h3>🔴 Si sale el peor escenario: plan de contingencia</h3>
+      <p class="prob-lead">El peor escenario no prueba que Cobros no tenga desperdicio. Prueba que <b>faltan datos</b>. Por eso no se abandona de inmediato: se baja un nivel, usando solo información que ya tenemos.</p>
+      <div class="wsteps">
+        <div class="wstep"><span class="wn">1</span><h4>A en horas, con datos propios</h4><p>Con la asignación del motor de KNIME y los resultados de la cartera (rollback, rehabilitación, deslizamiento) medimos si las visitas cerca del umbral rinden más que el teléfono. Si no rinden, ese tiempo de los gestores se libera o se reasigna. <b>Meta: ≥500 h.</b></p></div>
+        <div class="wstep"><span class="wn">2</span><h4>Estimar el costo por visita nosotros</h4><p>Con el gasto del centro de costo de Cobros (tablero 0519 Seguimiento Gastos Operativos) dividido entre las visitas del período sacamos un <b>costo promedio estimado</b>. Se presenta como estimación, no como dato de Cobros.</p></div>
+        <div class="wstep"><span class="wn">3</span><h4>Si tampoco hay datos de asignación</h4><p>Pasamos al plan fuera del área: <b>automatizar reportes y conciliaciones</b> en KNIME. Depende solo de nosotros y llega a ≥500 h.</p></div>
+        <div class="wstep"><span class="wn">4</span><h4>Convertir la brecha en hallazgo</h4><p>La falta de registro de costos, descuentos y gestiones se lleva a la hoja de ruta 30/60/90 como requisito para volver a Cobros con evidencia completa.</p></div>
+      </div>
+      <p class="prob-note"><b>Cómo presentarlo:</b> "Previmos este escenario desde el inicio y lo detectamos en la semana 1." Eso suma en factibilidad y riesgo, porque muestra control del proyecto.</p>
+    </div>
+
+    <div class="tree-note"><b>Riesgo aparte, incluso en el mejor escenario:</b> que al ajustar el umbral suba el deslizamiento. La salvaguarda (recuperación, rollback y rehabilitación) se mide desde el primer día.</div>
+  </section>
+
+  <section id="s5">
+    <div class="sec-head"><div class="num">5</div><h2>Por qué Cobros y no otras áreas</h2></div>
+    <p class="sub">Pasamos cada área por tres preguntas: ¿hay ahorro?, ¿tenemos el conocimiento y los datos?, ¿se prueba a tiempo? Solo una sale toda en verde.</p>
+    <div class="legend"><span>✅ Sí</span><span>⚠️ En parte</span><span>❌ No</span></div>
+    <table>
+      <thead><tr><th>Área</th><th>¿Hay ahorro?</th><th>¿Tenemos el conocimiento y los datos?</th><th>¿Se prueba en 6 semanas?</th><th>Por qué no</th></tr></thead>
+      <tbody>
+        <tr><td>Marketing (campañas)</td><td class="c">⚠️</td><td class="c">✅</td><td class="c">✅</td><td>TI ya filtra los datos: el ahorro fácil ya se capturó</td></tr>
+        <tr><td>Proveedores (pagos duplicados)</td><td class="c">⚠️</td><td class="c">❌</td><td class="c">✅</td><td>SAP puede ya bloquear duplicados; depende de Contabilidad</td></tr>
+        <tr><td>Riesgo (fraude)</td><td class="c">✅</td><td class="c">⚠️</td><td class="c">❌</td><td>Se ve meses después: no se mide a tiempo</td></tr>
+        <tr><td>Originación de crédito</td><td class="c">⚠️</td><td class="c">❌</td><td class="c">⚠️</td><td>Cambia la aprobación y hay riesgo para el cliente</td></tr>
+        <tr><td>Contact Center de servicio</td><td class="c">⚠️</td><td class="c">❌</td><td class="c">⚠️</td><td>Necesita desarrollo de Tecnología</td></tr>
+        <tr><td>Comisiones de venta</td><td class="c">✅</td><td class="c">❌</td><td class="c">✅</td><td>Tema sensible: la decisión es de Comercial</td></tr>
+        <tr><td>BI y reportes</td><td class="c">❌</td><td class="c">✅</td><td class="c">✅</td><td>Ahorra horas, no dinero</td></tr>
+        <tr><td>Tesorería (fondeo)</td><td class="c">✅</td><td class="c">❌</td><td class="c">❌</td><td>Fuera del alcance del grupo</td></tr>
+        <tr class="win"><td>Cobros</td><td class="c">✅</td><td class="c">✅</td><td class="c">✅</td><td>La única con las tres en verde</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5 -->
+  <section id="s6">
+    <div class="sec-head"><div class="num">6</div><h2>Por qué sí Cobros</h2></div>
+    <p class="sub">Seis razones para defender la elección.</p>
+    <table>
+      <thead><tr><th style="width:32%">Razón</th><th>Qué significa</th></tr></thead>
+      <tbody>
+        <tr><td><span class="rnum">1</span><b>Gasto operativo grande</b></td><td>Gestores telefónicos, visitas, giras, casas externas, comisiones y condonaciones</td></tr>
+        <tr><td><span class="rnum">2</span><b>Conocemos el proceso</b></td><td>Motor KNIME, canales, umbrales de 15k y 10k, escalera de comisiones y RMT documentados</td></tr>
+        <tr><td><span class="rnum">3</span><b>Tenemos los datos</b></td><td>Tramos de mora, rollback, rehabilitación, deslizamiento y reincidencia 90+ en KNIME</td></tr>
+        <tr><td><span class="rnum">4</span><b>Se prueba con datos históricos</b></td><td>Cuentas justo arriba vs. justo abajo del umbral: evidencia antes de la semana 5</td></tr>
+        <tr><td><span class="rnum">5</span><b>Salvaguardas claras</b></td><td>Recuperación, rollback y rehabilitación ya se miden</td></tr>
+        <tr><td><span class="rnum">6</span><b>Escala</b></td><td>C sirve como siguiente paso si A funciona, o como respaldo si no: hoja de ruta 30/60/90</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6 -->
+  <section id="s7">
+    <div class="sec-head"><div class="num">7</div><h2>Riesgos y cómo los manejamos</h2></div>
+    <p class="sub">Los decimos antes de que nos los pregunten.</p>
+    <table>
+      <thead><tr><th style="width:44%">Riesgo</th><th>Cómo lo manejamos</th></tr></thead>
+      <tbody>
+        <tr><td>Costo de visita fijo: el ahorro sería en horas, no en dinero</td><td>Preguntarlo esta semana; si es fijo, B pasa a ser la principal</td></tr>
+        <tr><td>Dependemos de datos de Cobros (costo de visitas, descuentos y gestiones)</td><td>Pedir un patrocinador de Cobros desde el inicio; si no hay datos, el paso 4 de la cascada nos dice cuándo detener y la sección 4 tiene el plan de contingencia</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Cierre -->
+  <section class="closing">
+    <h2>En una frase</h2>
+    <p>Atacamos Cobros con 3 ideas en cascada: primero la que ahorra dinero, después la que ahorra horas, y si nada aplica, detenemos con evidencia. La decisión final es de Cobros y del comité.</p>
+    <div class="speech">"Revisamos todas las áreas con tres preguntas: si hay ahorro, si depende de nosotros y si se puede probar en seis semanas. Cobros es la única que pasa las tres. Nuestra favorita es revisar si las visitas recuperan más de lo que cuestan; si no aplica, pasamos a los descuentos; después, a repartir mejor las cuentas. Y si Cobros no tiene los datos, lo decimos y detenemos a tiempo."</div>
+  </section>
+
+</main>
+<footer>Grupo 1 · Reto de reducción de costos con IA · Solvenza · Noviembre 2026</footer>
+</body>
+</html>
